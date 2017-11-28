@@ -18,6 +18,20 @@ class LoginForm extends Component {
     this.props.loginUser({ email, password });
   }
 
+  renderError() {
+    if (this.props.error) {
+      return (
+      <CardItem>
+        <Text style={styles.errorTextStyle} >
+          {this.props.error}
+        </Text>
+      </CardItem>
+
+      );
+    }
+  }
+
+
   renderButton() {
     if (this.props.loading) {
       return <Spinner size="large" />;
@@ -52,11 +66,7 @@ class LoginForm extends Component {
             value={this.props.password}
           />
         </CardItem>
-
-        <Text style={styles.errorTextStyle} >
-          {this.props.error}
-        </Text>
-
+          {this.renderError()}
         <CardItem>
           {this.renderButton()}
         </CardItem>
@@ -68,7 +78,7 @@ class LoginForm extends Component {
 const styles = {
   errorTextStyle: {
     fontSize: 20,
-    alignSelf: 'center',
+    alignContent: 'center',
     color: 'red'
   }
 };
